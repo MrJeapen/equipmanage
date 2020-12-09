@@ -1,0 +1,88 @@
+
+<head>
+    <title>地图</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HWM1FqPynlGWMLqX8rAZgp7PYylvuwGP"></script>
+</head>
+
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">监控中心</a>
+        <a><cite>实时位置</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">地图</div>
+
+
+                <div class="layui-card-body">
+
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-plat">
+                        <div style="width:1000px;height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
+<!--                        <div carousel-item id="LAY-index-plat">-->
+<!--                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>-->
+<!--                        </div>-->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('senior', layui.factory('senior'));
+
+    function loadJScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=HWM1FqPynlGWMLqX8rAZgp7PYylvuwGP";
+        document.body.appendChild(script);
+    }
+
+    //创建和初始化地图函数：
+    function initMap(){
+
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){
+        map = new BMap.Map("map");
+        map.centerAndZoom(new BMap.Point(114.3652,30.611269),16);
+    }
+    function setMapEvent(){
+        map.enableScrollWheelZoom();
+        map.enableKeyboard();
+        map.enableDragging();
+        map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+        target.addEventListener("click",function(){
+            target.openInfoWindow(window);
+        });
+    }
+    function addMapOverlay(){
+    }
+    //向地图添加控件
+    function addMapControl(){
+        var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+        map.addControl(scaleControl);
+        var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(navControl);
+        var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+        map.addControl(overviewControl);
+    }
+    var map;
+    loadJScript();
+    initMap();
+
+</script>

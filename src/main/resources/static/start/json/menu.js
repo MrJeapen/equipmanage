@@ -18,7 +18,7 @@
     ,"icon": "layui-icon-component"
     ,"list": [{
       "title": "实时位置"
-      ,"jump": "chart/map"
+      ,"jump": "chart/intimemap"
     }, {
       "title": "历史轨迹"
       ,"jump": "chart/map"
