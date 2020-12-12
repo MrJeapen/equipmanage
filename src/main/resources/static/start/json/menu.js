@@ -21,7 +21,7 @@
       ,"jump": "chart/intimemap"
     }, {
       "title": "历史轨迹"
-      ,"jump": "chart/map"
+      ,"jump": "chart/trail"
     }]
   }, {
     "name": "template"

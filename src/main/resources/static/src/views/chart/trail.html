@@ -1,0 +1,129 @@
+
+<head>
+    <title>地图</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HWM1FqPynlGWMLqX8rAZgp7PYylvuwGP"></script>
+</head>
+
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">监控中心</a>
+        <a><cite>实时位置</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">地图</div>
+
+
+                <div class="layui-card-body">
+
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-plat">
+                        <div style="width:1000px;height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
+                        <!--                        <div carousel-item id="LAY-index-plat">-->
+                        <!--                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>-->
+                        <!--                        </div>-->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('senior', layui.factory('senior'));
+
+
+    //创建和初始化地图函数：
+    function initMap(){
+
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMapOverlay();//向地图添加覆盖物
+        // //addMark(lng, lat); // 标初始点
+        // var point = new BMap.Point(114.3652,30.611269);
+        // var marker = new BMap.Marker(point);        // 创建标注
+        // map.addOverlay(marker);
+    }
+    function createMap(){
+        map = new BMap.Map("map");
+        map.centerAndZoom(new BMap.Point(114.3652,30.611269),16);
+    }
+    function setMapEvent(){
+        map.enableScrollWheelZoom();
+        map.enableKeyboard();
+        map.enableDragging();
+        map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+        target.addEventListener("click",function(){
+            target.openInfoWindow(window);
+        });
+    }
+    function addMapOverlay(){
+    }
+    //向地图添加控件
+    function addMapControl(){
+        var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+        map.addControl(scaleControl);
+        var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(navControl);
+        var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+        map.addControl(overviewControl);
+    }
+
+
+
+    // showmessagebox
+    function showMessageBox(mark, p){
+        // 创建信息窗口
+        var opts = {
+            width: 200,
+            height: 100,
+            title: mark.name
+        };
+        var infoWindow = new BMap.InfoWindow(mark.mission, opts);  // 创建信息窗口对象
+        map.openInfoWindow(infoWindow, p);      // 打开信息窗口
+
+    }
+
+    var map;
+    var lng = 114.3652;
+    var lat = 30.611269;
+    var points = [{"lng":114.3652, "lat":30.611269}
+                ,{"lng":114.37, "lat":30.611269}
+                ,{"lng":114.38, "lat":30.611269}
+                ,{"lng":114.38, "lat":30.62}
+                ,{"lng":114.38, "lat":30.63}
+                ,{"lng":114.38, "lat":30.64}
+                ];
+    var path = [];
+    for(var i=0; i<points.length; i++){
+        path.push(new BMap.Point(points[i].lng,points[i].lat));
+    }
+    var pl = new BMap.Polyline(path);
+
+    function draw () {
+        map.addOverlay(pl);
+    }
+
+
+    initMap();
+    setTimeout("draw()", 2000);
+    // refreshMap(data);
+    // setInterval(function () {
+    //     refreshMap(data);
+    // }, 5000);
+
+
+
+
+</script>
