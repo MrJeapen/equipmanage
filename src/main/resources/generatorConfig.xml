@@ -30,11 +30,12 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--生成表级类名-->
-        <table tableName="t_user" domainObjectName="UserDO"
+        <table tableName="t_check" domainObjectName="CheckDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
+<!--        <table tableName="t_check" domainObjectName="CheckDO"></table>-->
 <!--        <table tableName="password_info" domainObjectName="PasswordDO"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false"-->
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->

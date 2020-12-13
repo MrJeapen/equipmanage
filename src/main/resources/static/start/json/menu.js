@@ -2,15 +2,15 @@
   "code": 0
   ,"msg": ""
   ,"data": [{
-    "title": "系统管理"
+    "title": "作业系统"
     ,"icon": "layui-icon-home"
     ,"list": [{
-      "title": "用户管理"
-      ,"jump": "user/user/list"
+      "title": "作业发布"
+      ,"jump": "mission/list"
     }, {
       "name": "homepage1"
-      ,"title": "设备管理"
-      ,"jump": "user/administrators/list"
+      ,"title": "作业记录"
+      ,"jump": "mission/list"
     }]
   }, {
     "name": "component"
@@ -25,25 +25,8 @@
     }]
   }, {
     "name": "template"
-    ,"title": "消息系统"
+    ,"title": "点检记录"
     ,"icon": "layui-icon-template"
     ,"jump": "message/message"
-  }, {
-    "name": "app"
-    ,"title": "作业系统"
-    ,"icon": "layui-icon-app"
-    ,"list": [{
-      "name": "content"
-      ,"title": "发布作业"
-      ,"jump": "chart/map"
-    },{
-      "name": "forum"
-      ,"title": "已完成作业"
-      ,"jump": "chart/map"
-    },{
-      "name": "message"
-      ,"title": "待完成作业"
-      ,"jump": "chart/map"
-    }]
   }]
 }
