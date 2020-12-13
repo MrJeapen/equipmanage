@@ -30,6 +30,17 @@
     from t_location
     where equi_id = #{equiId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllLocations"  resultMap="BaseResultMap">
+        select * from t_location;
+  </select>
+
+
+
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

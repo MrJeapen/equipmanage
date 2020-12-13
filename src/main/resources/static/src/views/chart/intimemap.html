@@ -79,25 +79,25 @@
         var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
         map.addControl(overviewControl);
     }
-
+    [{"equiId":1,"longitude":"114.3652","latitude":"30.611269"},{"equiId":2,"longitude":"114.3655","latitude":"30.611272"}]
     // 添加点标记
     function addMark(mark){
-        var lng = mark.lng;
-        var lat = mark.lat;
+        var lng = mark.longitude;
+        var lat = mark.latitude;
         var point = new BMap.Point(lng,lat);
         var marker = new BMap.Marker(point);        // 创建标注
         map.addOverlay(marker);
         // 点标记添加点击事件
-        marker.addEventListener('click', function(){
-            // 创建信息窗口
-            var opts = {
-                width: 200,
-                height: 100,
-                title: mark.name
-            };
-            var infoWindow = new BMap.InfoWindow("任务：" + mark.mission, opts);  // 创建信息窗口对象
-            map.openInfoWindow(infoWindow, point);      // 打开信息窗口
-        });
+        // marker.addEventListener('click', function(){
+        //     // 创建信息窗口
+        //     var opts = {
+        //         width: 200,
+        //         height: 100,
+        //         title: mark.name
+        //     };
+        //     var infoWindow = new BMap.InfoWindow("任务：" + mark.mission, opts);  // 创建信息窗口对象
+        //     map.openInfoWindow(infoWindow, point);      // 打开信息窗口
+        // });
 
     }
     // 清除点
@@ -108,9 +108,9 @@
     // 刷新界面地点
     function refreshMap(data){
         remove_overlay();
-            for(var i=0; i<data.points.length; i++){
+            for(var i=0; i<data.length; i++){
 
-                addMark(data.points[i]);
+                addMark(data[i]);
             }
 
 
@@ -135,15 +135,26 @@
 
     var data = {
         "points": [
-            {"id":1, "name":"叉车一号", "speed":12, "mission":"卸货物", "lng":114.3652, "lat":30.611269}
-            ,{"id":1, "name":"铲车一号", "speed":12, "mission":"装货物", "lng":114.3657, "lat":30.611269}
+            {"id":1, "name":"叉车一号", "lng":114.3652, "lat":30.611269, "status":"空闲"}
+            ,{"id":1, "name":"铲车一号", "lng":114.3657, "lat":30.611269, "status":"工作中"}
         ]
     }
 
+
+    function requestForLocations(){
+        $.ajax({
+            type:"GET",
+            url:"/alllocations",
+            success:function(data){
+                refreshMap(data.data);
+            }
+        })
+    }
+
     initMap();
-    refreshMap(data);
+    requestForLocations();
     setInterval(function () {
-        refreshMap(data);
+        requestForLocations();
     }, 5000);
 
 
