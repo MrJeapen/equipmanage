@@ -22,6 +22,13 @@
     -->
     order_id, equip_id, time_start, time_end, note, worker_id
   </sql>
+
+<!--  无条件查询全部作业记录-->
+  <select id="commonQuery"  resultMap="BaseResultMap">
+    select t_process_log.*
+    from t_process_log
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
