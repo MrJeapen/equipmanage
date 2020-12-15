@@ -79,13 +79,13 @@
         var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
         map.addControl(overviewControl);
     }
-    [{"equiId":1,"longitude":"114.3652","latitude":"30.611269"},{"equiId":2,"longitude":"114.3655","latitude":"30.611272"}]
     // 添加点标记
     function addMark(mark){
         var lng = mark.longitude;
         var lat = mark.latitude;
+        var car = new BMap.Icon("/car.png", new BMap.Size(52, 52));
         var point = new BMap.Point(lng,lat);
-        var marker = new BMap.Marker(point);        // 创建标注
+        var marker = new BMap.Marker(point, {icon:car});        // 创建标注
         map.addOverlay(marker);
         // 点标记添加点击事件
         // marker.addEventListener('click', function(){

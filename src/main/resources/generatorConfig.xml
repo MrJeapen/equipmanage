@@ -53,7 +53,14 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
-        <table tableName="t_order" domainObjectName="OrderDO"
+<!--        <table tableName="t_equip" domainObjectName="EquipDO"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
+
+
+        <table tableName="t_route" domainObjectName="RouteDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

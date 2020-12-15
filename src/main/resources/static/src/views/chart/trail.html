@@ -19,16 +19,53 @@
                 <div class="layui-card-header">地图</div>
 
 
-                <div class="layui-card-body">
+                <div class="layui-card-body ">
+                    <div class="layui-row">
+                        <div class="layui-col-md8" style="height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
+                        <form class="layui-form layui-col-md4" action="">
 
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">设备类别</label>
+                                <div class="layui-input-block">
+                                    <select name="equip_class" id="equip_id" lay-filter="equipClassFilter" lay-verify="required">
+                                        <option value=""></option>
 
-                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-plat">
-                        <div style="width:1000px;height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
-                        <!--                        <div carousel-item id="LAY-index-plat">-->
-                        <!--                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>-->
-                        <!--                        </div>-->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">设备名称</label>
+                                <div class="layui-input-block">
+                                    <select name="equip_id" id="equip_name" lay-verify="required">
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">开始时间</label>
+                                <div class="layui-input-block">
+                                    <input id="starttime" type="text" name="starttime" required  lay-verify="required" placeholder="选择开始时间" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">结束时间</label>
+                                <div class="layui-input-block">
+                                    <input id="endtime" type="text" name="endtime" required  lay-verify="required" placeholder="选择开始时间" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">查询轨迹</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
 
             </div>
@@ -38,7 +75,6 @@
 
 <script>
     layui.use('senior', layui.factory('senior'));
-
 
     //创建和初始化地图函数：
     function initMap(){
@@ -79,51 +115,101 @@
         var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
         map.addControl(overviewControl);
     }
-
-
-
-    // showmessagebox
-    function showMessageBox(mark, p){
-        // 创建信息窗口
-        var opts = {
-            width: 200,
-            height: 100,
-            title: mark.name
-        };
-        var infoWindow = new BMap.InfoWindow(mark.mission, opts);  // 创建信息窗口对象
-        map.openInfoWindow(infoWindow, p);      // 打开信息窗口
-
-    }
-
+    // 地图对象
     var map;
-    var lng = 114.3652;
-    var lat = 30.611269;
-    var points = [{"lng":114.3652, "lat":30.611269}
-                ,{"lng":114.37, "lat":30.611269}
-                ,{"lng":114.38, "lat":30.611269}
-                ,{"lng":114.38, "lat":30.62}
-                ,{"lng":114.38, "lat":30.63}
-                ,{"lng":114.38, "lat":30.64}
-                ];
-    var path = [];
-    for(var i=0; i<points.length; i++){
-        path.push(new BMap.Point(points[i].lng,points[i].lat));
-    }
-    var pl = new BMap.Polyline(path);
-
-    function draw () {
-        map.addOverlay(pl);
-    }
+    // 轨迹对象
+    var pl;
 
 
+
+    // 初始化地图
     initMap();
-    setTimeout("draw()", 2000);
-    // refreshMap(data);
-    // setInterval(function () {
-    //     refreshMap(data);
-    // }, 5000);
+
+    layui.use('form', function(){
+        var form = layui.form;
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            map.removeOverlay(pl);
+            $.ajax({
+                type:"GET",
+                url:"/getRoute?equipid=" + data.field.equip_id + "&endtime=" + data.field.endtime + "&starttime=" + data.field.starttime,
+                success:function(data){
+                    console.log(data);
+                    var path = [];
+                    var points = data.data;
+                    for(var i=0; i<points.length; i++){
+                        path.push(new BMap.Point(points[i].longitude,points[i].latitude));
+                    }
+                    pl = new BMap.Polyline(path);
+                    map.addOverlay(pl);
+                    var car = new BMap.Icon("/car.png", new BMap.Size(52, 52));
+                    var startpoint = new BMap.Point(points[0].longitude, points[0].latitude)
+                    var endpoint = new BMap.Point(points[points.length-1].longitude, points[points.length-1].latitude)
+                    map.addOverlay(new BMap.Marker(startpoint, {icon:car}));
+                    map.addOverlay(new BMap.Marker(endpoint));
+
+                }
+            })
+            return false;
+        });
+
+        // 监听选框 切换设备名
+        form.on('select(equipClassFilter)', function(data){
+            getEquipsByClassId(data.value);
+
+        });
+    });
+
+    // 获取设备类型
+    $.ajax({
+        type:"GET",
+        url:"/equipClasses",
+        success:function(data){
+            var classes = data.data;
+            for(var i=0; i<classes.length; i++){
+                $("#equip_id").append(new Option(classes[i].className, classes[i].classId));
+            }
+            layui.form.render();//重新渲染 固定写法
+        }
+    });
 
 
 
+
+    // 获取设备名。渲染子选择框
+    function getEquipsByClassId(classId){
+        $.ajax({
+            type:"GET",
+            url:"/getEquipsByClassId?classId=" + classId,
+            success:function(data){
+                var classes = data.data;
+                $("#equip_name").empty();//清空下拉框的值
+                $("#equip_name").append(new Option());
+                for(var i=0; i<classes.length; i++){
+                    $("#equip_name").append(new Option(classes[i].equipName, classes[i].equipId));
+                }
+                layui.form.render("select");//重新渲染 固定写法
+            }
+        })
+    }
+
+
+
+
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#starttime'
+            ,type: 'datetime'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#endtime'
+            ,type: 'datetime'
+        });
+    });
 
 </script>
