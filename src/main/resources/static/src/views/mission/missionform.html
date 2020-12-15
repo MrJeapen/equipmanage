@@ -1,14 +1,17 @@
 
 
 <div class="layui-form" lay-filter="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+
   <div class="layui-form-item">
-    <label class="layui-form-label">用户名</label>
-    <div class="layui-input-inline">
-      <script type="text/html" template>
-        <input type="text" name="username" value="{{ d.params.username || '' }}" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-      </script>
+    <label class="layui-form-label">理货员</label>
+    <div class="layui-input-block">
+      <select name="workerId" id="workerId" lay-filter="equipClassFilter" lay-verify="required">
+        <option value=""></option>
+      </select>
     </div>
   </div>
+
+
   <div class="layui-form-item">
     <label class="layui-form-label">手机号码</label>
     <div class="layui-input-inline">
@@ -25,15 +28,8 @@
       </script>
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">头像</label>
-    <div class="layui-input-inline">
-      <script type="text/html" template>
-        <input type="text" name="avatar" value="{{ d.params.avatar || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
-      </script>
-    </div>
-    <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button> 
-  </div>
+
+
   <div class="layui-form-item" lay-filter="sex">
     <label class="layui-form-label">选择性别</label>
     <div class="layui-input-block">
@@ -52,6 +48,10 @@
 </div>
 
 <script>
+  // 请求理货员信息
+
+
+
 layui.use(['admin', 'form', 'upload'], function(){
   var $ = layui.$
   ,form = layui.form
@@ -69,4 +69,17 @@ layui.use(['admin', 'form', 'upload'], function(){
     }
   });
 })
+
+
+  $.ajax({
+    type:"GET",
+    url:"/workers",
+    success:function(data){
+      var workers = data.data;
+      for(var i=0; i<workers.length; i++){
+        $("#workerId").append(new Option(workers[i].workerName, workers[i].workerId));
+      }
+      layui.form.render();//重新渲染 固定写法
+    }
+  });
 </script>

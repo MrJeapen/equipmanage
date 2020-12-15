@@ -33,7 +33,7 @@
 
 
 
-        <table tableName="t_process_log" domainObjectName="ProcessLogDO"
+        <table tableName="t_check" domainObjectName="CheckDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
