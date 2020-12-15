@@ -15,20 +15,18 @@ layui.define(['table', 'form'], function(exports){
   ,table = layui.table
   ,form = layui.form;
 
-  //用户管理
+  //作业记录
   table.render({
     elem: '#LAY-user-manage'
-    ,url: '/users' //模拟接口   用户数据请求接口
+    ,url: '/start/json/useradmin/webuser.js' //模拟接口   用户数据请求接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
-      ,{field: 'userId', width: 100, title: 'ID', sort: true}
-      ,{field: 'userName', title: '用户名', minWidth: 100}
-      //,{field: 'avatar', title: '头像', width: 100, templet: '#imgTpl'}
-      //,{field: 'phone', title: '手机'}
-      //,{field: 'email', title: '邮箱'}
-      ,{field: 'role', width: 80, title: '角色'}
-      ,{field: 'status', title: '状态'}
-      //,{field: 'jointime', title: '加入时间', sort: true}
+      ,{field: 'orderId', title: '任务编号', sort: true}
+      ,{field: 'equipName', title: '设备名'}
+      ,{field: 'worker_name',  title: '理货员'}
+      ,{field: 'note', title: '工作内容'}
+      ,{field: 'startTime', title: '开始时间'}
+      ,{field: 'endTime', title: '结束时间'}
       ,{title: '操作', width: 150, align:'center', fixed: 'right', toolbar: '#table-useradmin-webuser'}
     ]]
     ,page: true
@@ -76,19 +74,19 @@ layui.define(['table', 'form'], function(exports){
     }
   });
 
-  //管理员管理
+  //作业发布
   table.render({
-    elem: '#LAY-user-back-manage'
-    ,url: './json/useradmin/mangadmin.js' //模拟接口
+    elem: '#LAY-order-publish'
+    ,url: '/start/json/useradmin/mangadmin.js' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
-      ,{field: 'id', width: 80, title: 'ID', sort: true}
-      ,{field: 'loginname', title: '登录名'}
-      ,{field: 'telphone', title: '手机'}
-      ,{field: 'email', title: '邮箱'}
-      ,{field: 'role', title: '角色'}
-      ,{field: 'jointime', title: '加入时间', sort: true}
-      ,{field: 'check', title:'审核状态', templet: '#buttonTpl', minWidth: 80, align: 'center'}
+      ,{field: 'orderId',  title: '任务编号', sort: true}
+      ,{field: 'initTime', title: '时间'}
+      ,{field: 'workClass', title: '班次'}
+      ,{field: 'workerName', title: '理货员'}
+      ,{field: 'publisher', title: '任务发布者'}
+      ,{field: 'status', title: '任务状态'}
+      ,{field: 'instruction', title:'任务内容'}
       ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-useradmin-admin'}
     ]]
     ,text: '对不起，加载出现异常！'

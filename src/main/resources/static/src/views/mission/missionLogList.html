@@ -2,9 +2,8 @@
   
 <div class="layui-card layadmin-header">
   <div class="layui-breadcrumb" lay-filter="breadcrumb">
-    <a lay-href="">系统管理</a>
-    <a><cite>用户管理</cite></a>
-<!--    <a><cite>网站用户</cite></a>-->
+    <a lay-href="">作业系统</a>
+    <a><cite>作业记录</cite></a>
   </div>
 </div>
 
@@ -48,13 +47,16 @@
         </div>
       </div>
     </div>
-    
+
+
+
     <div class="layui-card-body">
       <div style="padding-bottom: 10px;">
         <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">删除</button>
         <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
       </div>
-      
+
+
       <table id="LAY-user-manage" lay-filter="LAY-user-manage"></table>
       <script type="text/html" id="imgTpl"> 
         <img style="display: inline-block; width: 50%; height: 100%;" src= {{ d.avatar }}>

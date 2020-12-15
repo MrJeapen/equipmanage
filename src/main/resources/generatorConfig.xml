@@ -30,72 +30,19 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--生成表级类名-->
-<!--        <table tableName="t_check" domainObjectName="CheckDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-
-<!--        <table tableName="t_detail" domainObjectName="DetailDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-<!--        <table tableName="t_equip" domainObjectName="EquipDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-
-<!--        <table tableName="t_location" domainObjectName="LocationDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-
-<!--        <table tableName="t_equip" domainObjectName="EquipDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
 
 
-        <table tableName="t_route" domainObjectName="RouteDO"
+
+        <table tableName="t_process_log" domainObjectName="ProcessLogDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-<!--        <table tableName="t_process_log" domainObjectName="ProcessLogDO"-->
+<!--        <table tableName="t_worker" domainObjectName="WorkerDO"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false"-->
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-
-<!--        <table tableName="t_route" domainObjectName="RouteDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--        </table>-->
-
-
-<!--        <table tableName="t_check" domainObjectName="CheckDO"></table>-->
-<!--        <table tableName="password_info" domainObjectName="PasswordDO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-
-<!--        </table>-->
-
-
-
-
-
-<!--        <table tableName="stock_logs" domainObjectName="StockLog"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-
 <!--        </table>-->
 
 

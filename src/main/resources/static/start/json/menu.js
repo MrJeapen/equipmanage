@@ -6,11 +6,11 @@
     ,"icon": "layui-icon-home"
     ,"list": [{
       "title": "作业发布"
-      ,"jump": "mission/list"
+      ,"jump": "mission/missionPubList"
     }, {
       "name": "homepage1"
       ,"title": "作业记录"
-      ,"jump": "mission/list"
+      ,"jump": "mission/missionLogList"
     }]
   }, {
     "name": "component"
