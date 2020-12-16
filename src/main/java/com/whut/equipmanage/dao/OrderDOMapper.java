@@ -1,6 +1,9 @@
 package com.whut.equipmanage.dao;
 
 import com.whut.equipmanage.dataobject.OrderDO;
+import com.whut.equipmanage.common.resultBean.Order;
+
+import java.util.List;
 
 public interface OrderDOMapper {
     /**
@@ -50,4 +53,10 @@ public interface OrderDOMapper {
      * @mbg.generated Tue Dec 15 15:01:22 CST 2020
      */
     int updateByPrimaryKey(OrderDO record);
+
+    //查询全部作业发布
+    List<OrderDO> commonQuery(int start, int limit);
+
+
+    Integer getLogCount();
 }

@@ -1,5 +1,6 @@
 package com.whut.equipmanage.dao;
 
+
 import com.whut.equipmanage.dataobject.RouteDO;
 
 import java.sql.Timestamp;
@@ -24,4 +25,6 @@ public interface RouteDOMapper {
     int insertSelective(RouteDO record);
 
     List<RouteDO> getRouteByEquipIdAndTime(Integer equipId, Date startTime, Date endTime);
+
+
 }

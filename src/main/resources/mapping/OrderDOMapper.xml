@@ -43,6 +43,19 @@
     delete from t_order
     where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
+
+  <!--  无条件查询全部作业记录-->
+  <select id="commonQuery"  resultMap="BaseResultMap">
+    select t_order.*
+    from t_order limit #{start}, #{limit}
+  </select>
+
+
+  <select id="getLogCount" resultType="java.lang.Integer"  >
+    select count(*)
+    from t_order
+  </select>
+
   <insert id="insert" parameterType="com.whut.equipmanage.dataobject.OrderDO">
     <!--
       WARNING - @mbg.generated

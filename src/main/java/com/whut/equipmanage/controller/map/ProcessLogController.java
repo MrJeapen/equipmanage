@@ -32,13 +32,5 @@ public class ProcessLogController {
         return responseBean;
     }
 
-    @RequestMapping("/orderAdd")
-    public ResponseBean orderAdd(@RequestParam("workerId") Integer workerId,
-                                 @RequestParam("workClass") String workClass,
-                                 @RequestParam("instruction") String instruction){
-        System.out.println(workClass + "-- " + workerId + "--" + instruction);
-        ResponseBean responseBean = new ResponseBean();
-        responseBean.setCode(100);
-        return  responseBean;
-    }
+
 }
