@@ -27,6 +27,6 @@
     "name": "template"
     ,"title": "点检记录"
     ,"icon": "layui-icon-template"
-    ,"jump": "message/message"
+    ,"jump": "check/list"
   }]
 }

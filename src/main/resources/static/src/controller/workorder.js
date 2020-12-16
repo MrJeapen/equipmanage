@@ -18,17 +18,19 @@ layui.define(['table', 'form', 'element'], function(exports){
 
   table.render({
     elem: '#LAY-app-workorder'
-    ,url: './json/workorder/demo.js' //模拟接口
+    ,url: 'json/workorder/demo.js' //模拟接口
     ,cols: [[
       {type: 'numbers', fixed: 'left'}
-      ,{field: 'orderid', width: 100, title: '工单号', sort: true}
-      ,{field: 'attr', width: 100, title: '业务性质'}
-      ,{field: 'title', width: 100, title: '工单标题', width: 300}
-      ,{field: 'progress', title: '进度', width: 200, align: 'center', templet: '#progressTpl'}
-      ,{field: 'submit', width: 100, title: '提交者'}
-      ,{field: 'accept', width: 100, title: '受理人员'}
-      ,{field: 'state', title: '工单状态', templet: '#buttonTpl', minWidth: 80, align: 'center'}
-      ,{title: '操作', align: 'center', fixed: 'right', toolbar: '#table-system-order'}
+
+      ,{field: 'equipName',  title: '设备名'}
+      ,{field: 'equipClass', title: '设备类别'}
+      ,{field: 'checkTime', title: '点检时间'}
+      ,{field: 'workerName', title: '点检人'}
+      ,{field: 'workerPhone', title: '点检人电话'}
+      ,{field: 'note', title: '备注'}
+      ,{field: 'detailId', hide:true, width: 150, title: '详情'}
+
+      ,{title: '详情', width: 150, align: 'center', fixed: 'right', toolbar: '#table-system-order'}
     ]]
     ,page: true
     ,limit: 10
@@ -42,13 +44,14 @@ layui.define(['table', 'form', 'element'], function(exports){
   //监听工具条
   table.on('tool(LAY-app-workorder)', function(obj){
     var data = obj.data;
+    console.log(data);
     if(obj.event === 'edit'){
       admin.popup({
         title: '编辑工单'
         ,area: ['450px', '450px']
         ,id: 'LAY-popup-workorder-add'
         ,success: function(layero, index){
-          view(this.id).render('app/workorder/listform').done(function(){
+          view(this.id).render('./check/listform').done(function(){
             form.render(null, 'layuiadmin-form-workorder');
             
             //监听提交

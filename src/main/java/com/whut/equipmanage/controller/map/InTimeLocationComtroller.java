@@ -17,7 +17,6 @@ public class InTimeLocationComtroller {
 
     @RequestMapping("/alllocations")
     public ResponseBean getInTimeLocation(){
-
         List<LocationDO> locations = locationService.getLocations();
         ResponseBean responseBean = new ResponseBean();
         responseBean.setData(locations);

@@ -18,12 +18,12 @@ layui.define(['table', 'form'], function(exports){
   //作业记录
   table.render({
     elem: '#LAY-user-manage'
-    ,url: '/start/json/useradmin/webuser.js' //模拟接口   用户数据请求接口
+    ,url: '/allprocesslog' //模拟接口   用户数据请求接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
-      ,{field: 'orderId', title: '任务编号', sort: true}
+      ,{field: 'oriderId', title: '任务编号', sort: true}
       ,{field: 'equipName', title: '设备名'}
-      ,{field: 'worker_name',  title: '理货员'}
+      ,{field: 'workName',  title: '理货员'}
       ,{field: 'note', title: '工作内容'}
       ,{field: 'startTime', title: '开始时间'}
       ,{field: 'endTime', title: '结束时间'}

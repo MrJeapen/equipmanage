@@ -54,5 +54,8 @@ public interface ProcessLogDOMapper {
     int updateByPrimaryKey(ProcessLogDO record);
 
     //查询全部作业记录
-    List<ProcessLogDO> commonQuery();
+    List<ProcessLogDO> commonQuery(int start, int limit);
+
+
+    Integer getLogCount();
 }

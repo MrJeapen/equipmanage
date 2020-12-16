@@ -26,6 +26,12 @@
 <!--  无条件查询全部作业记录-->
   <select id="commonQuery"  resultMap="BaseResultMap">
     select t_process_log.*
+    from t_process_log limit #{start}, #{limit}
+  </select>
+
+
+  <select id="getLogCount" resultType="java.lang.Integer"  >
+    select count(*)
     from t_process_log
   </select>
 

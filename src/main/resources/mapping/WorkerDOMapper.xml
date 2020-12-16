@@ -30,6 +30,13 @@
     from t_worker
     where worker_id = #{workerId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllWorkers" resultMap="BaseResultMap">
+
+    select *
+    from t_worker
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

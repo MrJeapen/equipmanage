@@ -1,6 +1,7 @@
 package com.whut.equipmanage.controller;
 
 import com.whut.equipmanage.common.ResponseBean;
+import com.whut.equipmanage.dao.WorkerDOMapper;
 import com.whut.equipmanage.dataobject.WorkerDO;
 import com.whut.equipmanage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    WorkerDOMapper workerDOMapper;
+
+
     @RequestMapping("/workers")
     public ResponseBean userList(){
         ResponseBean responseBean = new ResponseBean();
-        List<WorkerDO> list = new ArrayList<>();
-        WorkerDO workerDO = new WorkerDO();
-        workerDO.setWorkerId(1);
-        workerDO.setWorkerName("张三");
-
-        list.add(workerDO);
-        responseBean.setData(list);
+        List<WorkerDO> allWorkers = workerDOMapper.getAllWorkers();
+        responseBean.setData(allWorkers);
         return  responseBean;
     }
 

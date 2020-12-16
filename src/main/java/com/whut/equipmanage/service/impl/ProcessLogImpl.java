@@ -8,6 +8,7 @@ import com.whut.equipmanage.service.ProcessLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +25,18 @@ public class ProcessLogImpl implements ProcessLogService {
     WorkerDOMapper workerDOMapper;
 
     @Override
-    public List<com.whut.equipmanage.common.resultBean.ProcessLog> commonquery() {
+    public List<com.whut.equipmanage.common.resultBean.ProcessLog> commonquery(Integer page, Integer limit) {
 
         List<com.whut.equipmanage.common.resultBean.ProcessLog> processLogList = new ArrayList<>();
-        List<ProcessLogDO> processLogDOS =processLogDOMapper.commonQuery();
-        System.out.println(processLogDOS.toString());
+        int start = (page-1) * limit;
+
+        List<ProcessLogDO> processLogDOS =processLogDOMapper.commonQuery(start, limit);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         for (ProcessLogDO processLogDO :processLogDOS){
             com.whut.equipmanage.common.resultBean.ProcessLog processLog=new com.whut.equipmanage.common.resultBean.ProcessLog();
             processLog.setOriderId(processLogDO.getEquipId().longValue());
-            processLog.setStartTime(processLogDO.getTimeStart());
-            processLog.setEndTime(processLogDO.getTimeEnd());
+            processLog.setStartTime(format.format(processLogDO.getTimeStart()));
+            processLog.setEndTime(format.format(processLogDO.getTimeEnd()));
             processLog.setNote(processLogDO.getNote());
             processLog.setWorkName(
                     workerDOMapper.selectByPrimaryKey(processLogDO.getWorkerId()).getWorkerName()
@@ -45,5 +48,13 @@ public class ProcessLogImpl implements ProcessLogService {
         }
 
         return processLogList;
+    }
+
+    @Override
+    public int getLogCount() {
+
+
+        return processLogDOMapper.getLogCount();
+
     }
 }

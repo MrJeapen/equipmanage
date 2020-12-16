@@ -123,7 +123,7 @@
             // 发布指令
             ,add: function(){
                 admin.popup({
-                    title: '添加用户'
+                    title: '发布作业'
                     ,area: ['500px', '450px']
                     ,id: 'LAY-popup-user-add'
                     ,success: function(layero, index){
@@ -134,8 +134,20 @@
                             form.on('submit(LAY-user-front-submit)', function(data){
                                 var field = data.field; //获取提交的字段
                                 console.log(field);
-                                //提交 Ajax 成功后，关闭当前弹层并重载表格
-                                //$.ajax({});
+
+                                $.ajax({
+                                    type:"post",
+                                    url:"/orderAdd",
+                                    data: field,
+                                    success: function (data){
+                                        if(data.code == 100){
+                                            layer.msg('任务发布成功');
+                                        }else{
+                                            layer.msg('任务发布失败，稍后再试');
+                                        }
+
+                                    }
+                                });
                                 layui.table.reload('LAY-order-publish'); //重载表格
                                 layer.close(index); //执行关闭
                             });
