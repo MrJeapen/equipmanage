@@ -12,11 +12,13 @@ import java.util.List;
 @RestController
 public class CheckController {
 
+
     @RequestMapping("/detail")
     public ResponseBean getDetailById(@RequestParam("detailId") Integer id){
 
         ResponseBean responseBean = new ResponseBean();
         List<DetailBean> list = new ArrayList<>();
+
         list.add(new DetailBean("胎压", "正常"));
         list.add(new DetailBean("胎压", "正常"));
         list.add(new DetailBean("胎压", "正常"));
