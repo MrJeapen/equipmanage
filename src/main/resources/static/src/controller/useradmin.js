@@ -77,11 +77,10 @@ layui.define(['table', 'form'], function(exports){
   //作业发布
   table.render({
     elem: '#LAY-order-publish'
-    ,url: '/start/json/useradmin/mangadmin.js' //模拟接口
+    ,url: '/allorder' //模拟接口
     ,cols: [[
-      {type: 'checkbox', fixed: 'left'}
-      ,{field: 'orderId',  title: '任务编号', sort: true}
-      ,{field: 'initTime', title: '时间'}
+      {field: 'orderId',  title: '任务编号', sort: true}
+      ,{field: 'theInitTime', title: '时间'}
       ,{field: 'workClass', title: '班次'}
       ,{field: 'workerName', title: '理货员'}
       ,{field: 'publisher', title: '任务发布者'}
@@ -89,6 +88,10 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'instruction', title:'任务内容'}
       ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-useradmin-admin'}
     ]]
+    ,page: true
+    ,limit: 30
+    ,height: 'full-320'
+
     ,text: '对不起，加载出现异常！'
   });
   

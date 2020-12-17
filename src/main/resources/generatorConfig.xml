@@ -33,7 +33,7 @@
 
 
 
-        <table tableName="t_check" domainObjectName="CheckDO"
+        <table tableName="t_admin" domainObjectName="AdminDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

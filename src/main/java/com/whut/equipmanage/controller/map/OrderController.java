@@ -21,7 +21,8 @@ public class OrderController {
     OrderService orderService;
 
     @RequestMapping("/allorder")
-    public ResponseBean getAllOrder(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit
+    public ResponseBean getAllOrder(@RequestParam("page") Integer page,
+                                    @RequestParam("limit") Integer limit
     ){
         List<Order> orderList = orderService.commonQuery(page, limit);
         int logCount = orderService.getLogCount();
@@ -33,7 +34,7 @@ public class OrderController {
     }
 
     @RequestMapping("/orderAdd")
-    public Boolean orderAdd(@RequestParam("workerId") Integer workerId,
+    public ResponseBean orderAdd(@RequestParam("workerId") Integer workerId,
                                  @RequestParam("workClass") String workClass,
                                  @RequestParam("instruction") String instruction){
         System.out.println(workClass + "-- " + workerId + "--" + instruction);
@@ -42,6 +43,16 @@ public class OrderController {
         //预留publisher修改
         orderDO.setPublisher(1);
 
-        return  orderService.insertOrderDo(orderDO)>0;
+        int i = orderService.insertOrderDo(orderDO);
+        ResponseBean responseBean = new ResponseBean();
+        if (i>0){
+            responseBean.setCode(100);
+        }else{
+            responseBean.setCode(101);
+        }
+
+
+
+        return  responseBean;
     }
 }

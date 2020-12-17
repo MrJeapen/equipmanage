@@ -9,6 +9,6 @@
     ,"workerName": "蒋劲夫"
     ,"workerPhone":"13722225694"
     ,"note": "无异常"
-    ,"detail": "查看"
+    ,"detailId": "1"
   }]
 }

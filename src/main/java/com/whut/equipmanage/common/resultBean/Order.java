@@ -10,7 +10,18 @@ public class Order extends OrderDO implements Serializable{
 
     private String workerName;
 
-    public Order( OrderDO orderDO) {
+
+    private String theInitTime;
+
+    public String getTheInitTime() {
+        return theInitTime;
+    }
+
+    public void setTheInitTime(String theInitTime) {
+        this.theInitTime = theInitTime;
+    }
+
+    public Order(OrderDO orderDO) {
 
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 

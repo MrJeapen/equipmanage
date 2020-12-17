@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,17 +33,18 @@ public class OrderImpl implements OrderService {
         List<Order> orderList = new ArrayList<>();
         int start = (page-1) * limit;
 
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 
         List<OrderDO> orderDOS = orderDOMapper.commonQuery(start,limit);
         for (OrderDO orderDO: orderDOS){
             Order order = new Order(orderDO) ;
 
-//            order.setInitTime(orderDO.getInitTime());
+
 
             order.setWorkerName(
                     workerDOMapper.selectByPrimaryKey(order.getWorkerId()).getWorkerName()
             );
+            order.setTheInitTime(format.format(orderDO.getInitTime()));
             orderList.add(order);
         }
         return orderList;
@@ -50,6 +52,7 @@ public class OrderImpl implements OrderService {
 
     @Override
     public int insertOrderDo(OrderDO orderDO) {
+        orderDO.setInitTime(new Date());
         return orderDOMapper.insert(orderDO);
     }
 }
