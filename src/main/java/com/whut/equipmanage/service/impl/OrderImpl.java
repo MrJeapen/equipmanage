@@ -38,9 +38,6 @@ public class OrderImpl implements OrderService {
         List<OrderDO> orderDOS = orderDOMapper.commonQuery(start,limit);
         for (OrderDO orderDO: orderDOS){
             Order order = new Order(orderDO) ;
-
-
-
             order.setWorkerName(
                     workerDOMapper.selectByPrimaryKey(order.getWorkerId()).getWorkerName()
             );

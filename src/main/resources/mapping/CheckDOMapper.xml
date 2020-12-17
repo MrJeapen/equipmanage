@@ -130,4 +130,16 @@
     where equip_id = #{equipId,jdbcType=INTEGER}
       and detai_ild = #{detaiIld,jdbcType=INTEGER}
   </update>
+
+  <!--  无条件查询全部作业记录-->
+  <select id="commonQuery"  resultMap="BaseResultMap">
+    select t_check.*
+    from t_check limit #{start}, #{limit}
+  </select>
+
+
+  <select id="getLogCount" resultType="java.lang.Integer"  >
+    select count(*)
+    from t_check
+  </select>
 </mapper>

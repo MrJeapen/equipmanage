@@ -2,6 +2,9 @@ package com.whut.equipmanage.dao;
 
 import com.whut.equipmanage.dataobject.CheckDO;
 import com.whut.equipmanage.dataobject.CheckDOKey;
+import com.whut.equipmanage.dataobject.ProcessLogDO;
+
+import java.util.List;
 
 public interface CheckDOMapper {
     /**
@@ -51,4 +54,11 @@ public interface CheckDOMapper {
      * @mbg.generated Thu Dec 17 19:15:34 CST 2020
      */
     int updateByPrimaryKey(CheckDO record);
+
+
+    //查询全部作业记录
+    List<CheckDO> commonQuery(int start, int limit);
+
+
+    Integer getLogCount();
 }
