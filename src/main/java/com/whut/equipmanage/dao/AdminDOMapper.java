@@ -54,4 +54,8 @@ public interface AdminDOMapper {
 
 
 
+    AdminDO getAdminByToken(String token);
+
+
+
 }

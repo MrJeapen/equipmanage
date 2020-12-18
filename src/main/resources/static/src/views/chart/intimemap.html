@@ -23,7 +23,7 @@
 
 
                     <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-plat">
-                        <div style="width:1000px;height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
+                        <div style="width:1000px;height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map1"></div>
 <!--                        <div carousel-item id="LAY-index-plat">-->
 <!--                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>-->
 <!--                        </div>-->
@@ -53,7 +53,7 @@
         // map.addOverlay(marker);
     }
     function createMap(){
-        map = new BMap.Map("map");
+        map = new BMap.Map("map1");
         map.centerAndZoom(new BMap.Point(114.3652,30.611269),16);
     }
     function setMapEvent(){
@@ -133,12 +133,6 @@
     var lng = 114.3652;
     var lat = 30.611269;
 
-    var data = {
-        "points": [
-            {"id":1, "name":"叉车一号", "lng":114.3652, "lat":30.611269, "status":"空闲"}
-            ,{"id":1, "name":"铲车一号", "lng":114.3657, "lat":30.611269, "status":"工作中"}
-        ]
-    }
 
 
     function requestForLocations(){
@@ -153,9 +147,22 @@
 
     initMap();
     requestForLocations();
-    setInterval(function () {
+    var interId = setInterval(function () {
         requestForLocations();
     }, 5000);
+    // localStorage.setItem("interId", interId);
+    // console.log(interId);
+    //
+    // window.onblur = function (){
+    //
+    //     console.log(interId);
+    //     clearInterval(interId);
+    // }
+
+    window.onhashchange =  function (){
+        console.log(interId);
+        clearInterval(interId);
+    }
 
 
 

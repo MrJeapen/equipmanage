@@ -1,6 +1,7 @@
 package com.whut.equipmanage.controller;
 
 import com.whut.equipmanage.common.ResponseBean;
+import com.whut.equipmanage.common.resultBean.SessionBean;
 import com.whut.equipmanage.common.resultBean.TokenBean;
 import com.whut.equipmanage.dao.AdminDOMapper;
 import com.whut.equipmanage.dao.WorkerDOMapper;
@@ -50,9 +51,19 @@ public class UserController {
             adminDO.setToken(token);
             // 添加token
             adminDOMapper.updateByPrimaryKey(adminDO);
-            responseBean.setData(token);
+            responseBean.setData(tokenBean);
             responseBean.setCount(0);
         }
+        return responseBean;
+    }
+
+    @RequestMapping("/getsession")
+    public ResponseBean getsession(@RequestParam("access_token") String token){
+        ResponseBean responseBean = new ResponseBean();
+        AdminDO adminByToken = adminDOMapper.getAdminByToken(token);
+        SessionBean sessionBean = new SessionBean();
+        sessionBean.setUsername(adminByToken.getAdminName());
+        responseBean.setData(sessionBean);
         return responseBean;
     }
 

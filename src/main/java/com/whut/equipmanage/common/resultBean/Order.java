@@ -10,6 +10,15 @@ public class Order extends OrderDO implements Serializable{
 
     private String workerName;
 
+    private String publishName;
+
+    public String getPublishName() {
+        return publishName;
+    }
+
+    public void setPublishName(String publishName) {
+        this.publishName = publishName;
+    }
 
     private String theInitTime;
 

@@ -22,6 +22,9 @@
                 <div class="layui-card-body ">
                     <div class="layui-row">
                         <div class="layui-col-md8" style="height:520px; padding-left: 200px; border:#ccc solid 1px;font-size:12px" id="map"></div>
+
+
+
                         <form class="layui-form layui-col-md4" action="">
 
                             <div class="layui-form-item">
@@ -125,6 +128,7 @@
     // 初始化地图
     initMap();
 
+
     layui.use('form', function(){
         var form = layui.form;
         //监听提交
@@ -134,7 +138,7 @@
                 type:"GET",
                 url:"/getRoute?equipid=" + data.field.equip_id + "&endtime=" + data.field.endtime + "&starttime=" + data.field.starttime,
                 success:function(data){
-                    console.log(data);
+
                     var path = [];
                     var points = data.data;
                     for(var i=0; i<points.length; i++){

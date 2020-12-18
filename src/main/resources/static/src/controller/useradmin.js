@@ -27,7 +27,7 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'note', title: '工作内容'}
       ,{field: 'startTime', title: '开始时间'}
       ,{field: 'endTime', title: '结束时间'}
-      ,{title: '操作', width: 150, align:'center', fixed: 'right', toolbar: '#table-useradmin-webuser'}
+      // ,{title: '操作', width: 150, align:'center', fixed: 'right', toolbar: '#table-useradmin-webuser'}
     ]]
     ,page: true
     ,limit: 30
@@ -83,10 +83,10 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'theInitTime', title: '时间'}
       ,{field: 'workClass', title: '班次'}
       ,{field: 'workerName', title: '理货员'}
-      ,{field: 'publisher', title: '任务发布者'}
+      ,{field: 'publishName', title: '任务发布者'}
       ,{field: 'status', title: '任务状态'}
       ,{field: 'instruction', title:'任务内容'}
-      ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-useradmin-admin'}
+      // ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-useradmin-admin'}
     ]]
     ,page: true
     ,limit: 30

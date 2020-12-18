@@ -18,12 +18,12 @@ layui.define(['table', 'form', 'element'], function(exports){
 
   table.render({
     elem: '#LAY-app-workorder'
-    ,url: 'json/workorder/demo.js' //模拟接口
+    ,url: '/allcheck' //模拟接口
     ,cols: [[
       {type: 'numbers', fixed: 'left'}
 
       ,{field: 'equipName',  title: '设备名'}
-      ,{field: 'equipClass', title: '设备类别'}
+      // ,{field: 'equipClass', title: '设备类别'}
       ,{field: 'checkTime', title: '点检时间'}
       ,{field: 'workerName', title: '点检人'}
       ,{field: 'workerPhone', title: '点检人电话'}

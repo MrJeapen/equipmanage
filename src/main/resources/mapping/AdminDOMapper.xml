@@ -135,4 +135,10 @@
       token = #{token,jdbcType=VARCHAR}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
+
+
+  <select id="getAdminByToken" resultMap="BaseResultMap">
+    select * from t_admin where token = #{token}
+  </select>
+
 </mapper>

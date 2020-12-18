@@ -1,6 +1,7 @@
 package com.whut.equipmanage.service.impl;
 
 import com.whut.equipmanage.common.resultBean.Order;
+import com.whut.equipmanage.dao.AdminDOMapper;
 import com.whut.equipmanage.dao.OrderDOMapper;
 import com.whut.equipmanage.dao.WorkerDOMapper;
 import com.whut.equipmanage.dataobject.OrderDO;
@@ -21,6 +22,8 @@ public class OrderImpl implements OrderService {
 
     @Autowired
     WorkerDOMapper workerDOMapper;
+    @Autowired
+    AdminDOMapper adminDOMapper;
 
     @Override
     public int getLogCount() {
@@ -42,6 +45,8 @@ public class OrderImpl implements OrderService {
                     workerDOMapper.selectByPrimaryKey(order.getWorkerId()).getWorkerName()
             );
             order.setTheInitTime(format.format(orderDO.getInitTime()));
+
+            order.setPublishName(adminDOMapper.selectByPrimaryKey(orderDO.getPublisher()).getAdminName());
             orderList.add(order);
         }
         return orderList;
@@ -50,6 +55,7 @@ public class OrderImpl implements OrderService {
     @Override
     public int insertOrderDo(OrderDO orderDO) {
         orderDO.setInitTime(new Date());
+        orderDO.setStatus("未完成");
         return orderDOMapper.insert(orderDO);
     }
 }

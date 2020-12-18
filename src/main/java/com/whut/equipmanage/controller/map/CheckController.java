@@ -4,6 +4,8 @@ import com.whut.equipmanage.common.ResponseBean;
 import com.whut.equipmanage.common.resultBean.Check;
 import com.whut.equipmanage.common.resultBean.DetailBean;
 import com.whut.equipmanage.common.resultBean.Order;
+import com.whut.equipmanage.dao.DetailDOMapper;
+import com.whut.equipmanage.dataobject.DetailDO;
 import com.whut.equipmanage.service.CheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class CheckController {
 
     @Autowired
     CheckService checkService;
+
+    @Autowired
+    DetailDOMapper detailDOMapper;
 
 
     @RequestMapping("/allcheck")
@@ -37,12 +42,14 @@ public class CheckController {
     public ResponseBean getDetailById(@RequestParam("detailId") Integer id){
 
         ResponseBean responseBean = new ResponseBean();
+
+        DetailDO detailDO = detailDOMapper.selectByPrimaryKey(id);
         List<DetailBean> list = new ArrayList<>();
 
-        list.add(new DetailBean("胎压", "正常"));
-        list.add(new DetailBean("胎压", "正常"));
-        list.add(new DetailBean("胎压", "正常"));
-        list.add(new DetailBean("胎压", "正常"));
+        list.add(new DetailBean("胎压", detailDO.getTyrePressure()));
+        list.add(new DetailBean("机油", detailDO.getEngineOil()));
+        list.add(new DetailBean("燃油", detailDO.getOil()));
+        list.add(new DetailBean("螺丝", detailDO.getScrew()));
         responseBean.setData(list);
         return  responseBean;
     }

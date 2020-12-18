@@ -14,7 +14,7 @@
   </resultMap>
 
   <select id="getRouteByEquipIdAndTime" resultMap="BaseResultMap">
-    select * from t_route where equip_id = #{equipId} and point_time between #{startTime} and #{endTime};
+    select * from t_route where equip_id = #{equipId} and point_time between #{startTime} and #{endTime} order by point_time;
   </select>
 
   <insert id="insert" parameterType="com.whut.equipmanage.dataobject.RouteDO">
